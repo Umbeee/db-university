@@ -1,0 +1,78 @@
+/* 1.*/
+SELECT *
+FROM teachers;
+
+
+/* 2*/
+SELECT head_of_department
+FROM departments;
+
+
+/* 3*/
+SELECT *
+FROM students
+WHERE name LIKE 'e%';
+
+/* 4*/
+SELECT *
+FROM students
+WHERE YEAR(enrolment_date)=2021;
+
+/* 5*/
+SELECT *
+FROM courses
+WHERE website IS NULL;
+
+/* 6*/
+SELECT *
+FROM teachers
+WHERE phone IS NOT NULL;
+
+
+/* 7*/
+SELECT *
+FROM exams
+WHERE  MONTH(date)= 7 OR MONTH(date)=6;
+
+
+/* 8*/
+SELECT COUNT(id)
+FROM students;
+
+
+
+/* seconda parte */
+
+
+/*1. Contare i corsi raggruppati per cfu  */
+SELECT COUNT(*) AS corsi_per_crediti, cfu
+FROM `courses`
+GROUP BY `cfu`;
+
+
+/*2. Contare gli studenti raggruppati per anno di nascita */
+SELECT COUNT(*) AS students_number, YEAR(date_of_birth)
+FROM `students`
+GROUP BY YEAR( date_of_birth );
+
+
+/*3. Selezionare il voto più basso dato ad ogni appello d'esame */
+SELECT exam_id, MIN(vote)
+FROM exam_student
+GROUP BY exam_id;
+
+
+/*4.  Contare gli appelli d'esame del mese di luglio raggruppati per giorno*/
+SELECT COUNT(*) AS appelli_al_giorno, DAY( date ) AS giorno_di_luglio
+FROM `exams`
+WHERE MONTH(date) = 7
+GROUP BY DAY(`date`);
+
+
+
+
+
+
+
+
+
